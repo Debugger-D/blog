@@ -4,9 +4,7 @@ const handleBlogRouter = (req, res) => {
   const path = url.split('?')[0]
   const query = url.split('?')[1]
 
-  console.log(method, path, 11)
   if(method === 'GET' && path === '/api/blog/list') {
-    console.log(path, 22)
     return  {
       msg: '这是获取博客的接口'
     }

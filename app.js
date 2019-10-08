@@ -1,16 +1,20 @@
+const queryString = require('querystring')
 const handleUserRouter = require('./router/user')
 const handleBlogRouter = require('./router/blog')
 
 const serverHandle = (req, res) => {
-  console.log(req)
   // 设置返回格式
   res.setHeader('Content-type', 'application/json');
 
+  const url = req.url;
+  req.path = url.split('?')[0]
+  req.query = queryString.parse(url.split('?')[1]);
+
+  console.log(res.query, 8989)
   const blogData = handleBlogRouter(req, res);
   const userData = handleUserRouter(req, res);
 
   if(blogData) {
-    console.log(blogData, 44)
     res.end(JSON.stringify(blogData));
     return;
   }
