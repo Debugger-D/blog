@@ -27,7 +27,24 @@ const getDetail = id => {
   }
 }
 
+const newBlog = (newData = {}) => {
+  return {
+    id: 1,
+  }
+}
+
+const updataBlog = (data = {}) => {
+  console.log(111)
+  const { id, ...others } = data;
+  console.log(others)
+  return {
+    id: 11,
+  }
+}
+
 module.exports = {
   getList,
-  getDetail
+  newBlog,
+  getDetail,
+  updataBlog
 }

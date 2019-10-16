@@ -1,5 +1,5 @@
 const { SuccessModel, ErrorModel } = require('../model/resModel')
-const { getList, getDetail } = require('../controller/blog')
+const { getList, getDetail, newBlog, updataBlog } = require('../controller/blog')
 
 const handleBlogRouter = (req, res) => {
   const method = req.method;
@@ -21,8 +21,18 @@ const handleBlogRouter = (req, res) => {
   }
 
   if(method === 'POST' && path === '/api/blog/new') {
-    return  {
-      msg: '这是创建博客的接口'
+    const postData = req.body
+    const blog = newBlog(postData)
+    return new SuccessModel(blog)
+  }
+
+  if(method === 'POST' && path === '/api/blog/updata') {
+    const postData = req.body
+    const result = updataBlog(postData)
+    if(result) {
+      return new SuccessModel(blog)
+    } else {
+      return new ErrorModel('更新博客失败')
     }
   }
 
